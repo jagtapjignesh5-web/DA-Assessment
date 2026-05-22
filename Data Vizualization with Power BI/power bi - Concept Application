@@ -1,0 +1,28 @@
+POWER BI :- Concept Application
+=============================================
+
+Q1. Compare Import vs. DirectQuery modes and identify which is suitable for a static CSV file.
+A1. Import mode loads data into Power BI's in-memory cache for fast performance and full DAX support, 
+while DirectQuery queries the source in real-time for current data but slower performance. For static CSV files, 
+use Import mode since data is static, file sizes are small, and offline capability is useful.
+
+Q2. Explain the consequence of a "Text" data type on a Card visual displaying sales and identify where in the workflow to correct this.
+A2. Text data type prevents aggregation functions (SUM, AVG) from working properly on sales values, causing incorrect or concatenated results on the Card visual. 
+Correct this in Power Query Editor by clicking Transform Data, selecting the column, and changing the Data Type dropdown from Text to Whole Number or Currency.
+
+Q3. Identify the specific menu or pane used to change a bar chart's sort order from alphabetical to descending by value.
+A3. Click the bar chart, then in the Visualizations pane (right side), click the Sort axis button (three horizontal bars icon) in the toolbar. 
+Click the dropdown next to it, select "Sort by Y-axis," and choose Descending. Alternatively, use Format pane > X-axis > Sort order.
+
+Q4. Contrast filtering in Power Query versus using a visual-level "Top N" filter regarding their impact on other report visuals.
+A4. Power Query filters remove data before it enters the model, affecting all visuals globally no other visual can see filtered rows. 
+Visual-level "Top N" filters only affect that specific visual; other visuals continue to display the complete unfiltered dataset from the model.
+
+Q5. Describe how to modify a bar chart or use a DAX measure to show a region's percentage of total sales instead of absolute values.
+A5. Create a DAX measure: % of Total = DIVIDE(SUM([Sales]), CALCULATE(SUM([Sales]), ALL('Region'))). Add this measure to the chart's Values area and format as percentage in the Format pane. 
+This shows each region's portion of total sales instead of absolute values.
+
+Q6. Explain why hardcoded file paths cause shared PBIX files to break and how to make a report portable for other users.
+A6. Hardcoded paths like "C:\Users\John\Desktop\file.xlsx" only exist on that user's machine other users have different usernames and folder structures, 
+causing "file not found" errors. Make reports portable by using relative paths (e.g., ".\Data\file.xlsx"), storing data in SharePoint, 
+or using environment variables so all users access files from the same location.
